@@ -1,0 +1,250 @@
+<html>
+<head>
+    <base href="html">
+    <meta charset="UTF-8">
+    <title>Cartão de Emergência</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
+        }
+        .card {
+            width: 85mm;
+            height: 54mm;
+            border: 2px solid #000;
+            padding: 10px;
+            margin: 20px auto;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #cc0000;
+            animation: slide 3s linear infinite;
+        }
+        @keyframes slide {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .print-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .print-button:hover {
+            background-color: #218838;
+        }
+        .header {
+            text-align: center;
+            color: #cc0000;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+        }
+        input:focus, textarea:focus, select:focus {
+            border-color: #66afe9;
+            outline: none;
+        }
+        .contact-group {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+        }
+        .contact-group h4 {
+            margin-top: 0;
+            color: #555;
+        }
+        @media print {
+            .no-print {
+                display: none;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                background: none;
+            }
+            .card {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container no-print">
+        <h2>Preencha as Informações do Cartão de Emergência</h2>
+        
+        <div class="form-group">
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome">
+        </div>
+        
+        <div class="form-group">
+            <label for="nascimento">Data de Nascimento:</label>
+            <input type="date" id="nascimento" name="nascimento">
+        </div>
+        
+        <div class="form-group">
+            <label for="sexo">Sexo:</label>
+            <select id="sexo" name="sexo">
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+                <option value="O">Outro</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="sangue">Tipo Sanguíneo:</label>
+            <select id="sangue" name="sangue">
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <h3>Contatos de Emergência:</h3>
+            
+            <div class="contact-group">
+                <h4>Contato 1:</h4>
+                <label for="contato1_nome">Nome:</label>
+                <input type="text" id="contato1_nome" name="contato1_nome">
+                
+                <label for="contato1_telefone">Telefone:</label>
+                <input type="text" id="contato1_telefone" name="contato1_telefone">
+                
+                <label for="contato1_parentesco">Parentesco:</label>
+                <input type="text" id="contato1_parentesco" name="contato1_parentesco">
+            </div>
+            
+            <div class="contact-group">
+                <h4>Contato 2:</h4>
+                <label for="contato2_nome">Nome:</label>
+                <input type="text" id="contato2_nome" name="contato2_nome">
+                
+                <label for="contato2_telefone">Telefone:</label>
+                <input type="text" id="contato2_telefone" name="contato2_telefone">
+                
+                <label for="contato2_parentesco">Parentesco:</label>
+                <input type="text" id="contato2_parentesco" name="contato2_parentesco">
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="alergias">Alergias/Doenças:</label>
+            <textarea id="alergias" name="alergias" rows="3"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="medicamentos">Medicamentos Controlados:</label>
+            <textarea id="medicamentos" name="medicamentos" rows="3"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="outras">Outras Informações Importantes:</label>
+            <textarea id="outras" name="outras" rows="3"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="doador">Doador de Órgãos:</label>
+            <select id="doador" name="doador">
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="cidade">Cidade onde Reside:</label>
+            <input type="text" id="cidade" name="cidade">
+        </div>
+        
+        <button onclick="gerarCartao()" class="print-button">Gerar e Imprimir Cartão</button>
+    </div>
+
+    <div id="cartao" class="card">
+        <!-- Cartão será gerado aqui -->
+    </div>
+
+    <script>
+        function gerarCartao() {
+            const cartao = document.getElementById('cartao');
+            const contato1Nome = document.getElementById('contato1_nome').value;
+            const contato1Telefone = document.getElementById('contato1_telefone').value;
+            const contato1Parentesco = document.getElementById('contato1_parentesco').value;
+            const contato2Nome = document.getElementById('contato2_nome').value;
+            const contato2Telefone = document.getElementById('contato2_telefone').value;
+            const contato2Parentesco = document.getElementById('contato2_parentesco').value;
+
+            cartao.innerHTML = `
+                <div class="header">CARTÃO DE EMERGÊNCIA</div>
+                <div style="font-size: 10px; line-height: 1.4;">
+                    <strong>Nome:</strong> ${document.getElementById('nome').value}<br>
+                    <strong>Nascimento:</strong> ${formatarData(document.getElementById('nascimento').value)}<br>
+                    <strong>Sexo:</strong> ${document.getElementById('sexo').value}<br>
+                    <strong>Tipo Sanguíneo:</strong> ${document.getElementById('sangue').value}<br>
+                    <strong>Contatos de Emergência:</strong><br>
+                    &nbsp;&nbsp;<strong>Contato 1:</strong> ${contato1Nome}, ${contato1Telefone}, ${contato1Parentesco}<br>
+                    &nbsp;&nbsp;<strong>Contato 2:</strong> ${contato2Nome}, ${contato2Telefone}, ${contato2Parentesco}<br>
+                    <strong>Alergias/Doenças:</strong> ${document.getElementById('alergias').value}<br>
+                    <strong>Medicamentos:</strong> ${document.getElementById('medicamentos').value}<br>
+                    <strong>Outras Info:</strong> ${document.getElementById('outras').value}<br>
+                    <strong>Doador de Órgãos:</strong> ${document.getElementById('doador').value}<br>
+                    <strong>Cidade:</strong> ${document.getElementById('cidade').value}
+                </div>
+            `;
+            window.print();
+        }
+
+        function formatarData(data) {
+            if (!data) return '';
+            const [ano, mes, dia] = data.split('-');
+            return `${dia}/${mes}/${ano}`;
+        }
+    </script>
+</body>
+</html>
